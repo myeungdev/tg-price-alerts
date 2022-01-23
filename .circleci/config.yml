@@ -51,10 +51,10 @@ jobs:
             EOF
             ssh remote-docker "sudo service docker restart"
             docker system info
+      - checkout
       - run:
           name: Write .npmrc on docker machine
           command: ssh remote-docker "echo $NPMRC > ~/project/.npmrc"
-      - checkout
       - docker/build:
           registry: $DOCKER_REGISTRY
           image: tg-price-alerts
